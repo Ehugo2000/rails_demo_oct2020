@@ -13,7 +13,11 @@ class ArticlesController < ApplicationController
 
   def create
    @article = Article.create(article_params)
-   redirect_to @article, notice: 'Article was successfully created.'
+    if @article.persisted?
+      redirect_to @article, notice: 'Article was successfully created.'
+    else
+      redirect_to new_article_path, notice: "Title can't be blank"
+    end
   end
 
   def article_params
