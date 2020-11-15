@@ -7,4 +7,17 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def new
+    @article = Article.new
+  end
+
+  def create
+   @article = Article.create(article_params)
+   redirect_to @article, notice: 'Article was successfully created.'
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :content)
+  end
+  
 end
