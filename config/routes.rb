@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'atricles/index'
   root controller: :articles, action: :index
+  resources :articles, only: [:index, :show]
 end
